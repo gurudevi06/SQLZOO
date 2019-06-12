@@ -1,0 +1,34 @@
+5.1
+SELECT SUM(population)
+FROM world
+
+5.2
+select distinct(continent) from world
+
+5.3
+select sum(GDP) from world
+where continent='Africa'
+
+5.4
+select count(name) from world where area >= 1000000
+
+5.5
+
+select sum(population) from world where name in ('Estonia', 'Latvia', 'Lithuania')
+
+5.6
+select continent, count(name) from world
+group by continent
+
+
+5.7
+
+select continent, count(name) from world
+where population >= 10000000
+group by continent
+
+5.8
+select continent from world
+group by continent
+having  sum(population)>= 100000000
+

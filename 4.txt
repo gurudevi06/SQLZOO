@@ -1,0 +1,58 @@
+4
+===
+4.1 
+
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+
+4.2
+
+SELECT name from  world where Continent='Europe'
+and gdp/population > ( select gdp/population from world where name= 'United Kingdom') 
+
+4.3
+
+select name, continent from world
+where continent in (
+select continent from world where name in ('Argentina','Australia'))
+order by name
+
+4.4
+
+select name, population from world
+where population > (select population from world where name='Canada' )
+and population < (select population from world where name='Poland')
+
+4.5
+
+select name,
+ CONCAT(round((population/(select population from world where name='Germany')*100),0), '%')
+from world
+where continent='Europe'
+
+
+4.6
+
+select name from world where gdp > (
+select max(gdp) from world where continent='Europe' and gdp is not null
+)
+
+4.7
+
+SELECT continent, name, area FROM world x
+  WHERE area >= ALL
+    (SELECT area FROM world y
+        WHERE y.continent=x.continent
+          AND area>0)
+
+
+4.9
+
+select  name, continent,population
+from world where continent not in 
+(
+select continent from world 
+where population > 25000000)
+
